@@ -3,15 +3,12 @@ package statsd
 import (
 	"bufio"
 	"fmt"
-	. "github.com/visionmedia/go-debug"
 	"io"
 	"math/rand"
 	"net"
 	"sync"
 	"time"
 )
-
-var debug = Debug("statsd")
 
 const defaultBufSize = 512
 
@@ -170,7 +167,6 @@ func (c *Client) send(stat string, rate float64, format string, args ...interfac
 	}
 
 	format = fmt.Sprintf("%s:%s", stat, format)
-	debug(format, args...)
 
 	c.m.Lock()
 	defer c.m.Unlock()
